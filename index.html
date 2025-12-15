@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lee-Stanley Corporation | Your Solutions Partner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --accent: #3b82f6;
+            --secondary: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .services {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .pmo-depot-feature {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pmo-depot-feature::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .pmo-depot-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pmo-depot-feature h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pmo-depot-feature .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .pmo-depot-feature > .pmo-depot-content > p {
+            font-size: 1.1rem;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            opacity: 0.95;
+        }
+
+        .pmo-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pmo-feature-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            text-align: left;
+        }
+
+        .pmo-feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .pmo-feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .pmo-feature-card p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .pmo-feature-card a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .pmo-feature-card a:hover {
+            text-decoration: underline;
+        }
+
+        .pmo-cta-buttons {
+            margin-top: 3rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pmo-btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: #10b981;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .pmo-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+
+        .pmo-btn-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .pmo-btn-secondary:hover {
+            background: white;
+            color: #10b981;
+        }
+
+        .capabilities {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .capabilities-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .capability-category {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 15px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .capability-category h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .capability-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .capability-item {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .capability-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .about {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .about-feature {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .about-feature h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .contact-info p {
+            margin-bottom: 0.8rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .pmo-features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="https://i.imgur.com/XwYQZ8p.png" alt="Lee-Stanley Corporation Logo" class="logo-img">
+                <span>LEE-STANLEY</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pmo-depot">PMO Depot®</a></li>
+                <li><a href="#capabilities">Capabilities</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact" class="cta-button">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="https://i.imgur.com/XwYQZ8p.png" alt="Lee-Stanley Corporation" style="max-width: 200px; margin: 0 auto 2rem; display: block;">
+            <h1>Lee-Stanley Corporation</h1>
+            <p class="tagline">Empowering Innovation, Connecting Solutions</p>
+            <p>Your trusted partner for innovative resources and results in Information Technology, Communications, Project Management, Staffing, and Strategic Consulting.</p>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>Comprehensive solutions tailored to your organizational needs</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Information Technology</h3>
+                <p>Revolutionize your business operations with advanced information systems. Our management information solutions are designed to enhance productivity, improve efficiency, and drive profitability for your business.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📡</div>
+                <h3>Telecommunications</h3>
+                <p>Seamlessly connect with the world through cutting-edge telecommunications systems. We deliver solutions that integrate communication technologies across government, business, education, and home.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👥</div>
+                <h3>Talent Staffing Solutions</h3>
+                <p>Finding the perfect talent doesn't have to be time-consuming or costly. Our tailored staffing solutions provide qualified professionals for temporary or permanent positions, saving you valuable resources.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Project Management</h3>
+                <p>Efficiently plan, execute, and monitor projects with our expert project management services. From achieving your goals to solving complex problems, we help implement effective changes and deliver results.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Program Management</h3>
+                <p>Achieve strategic objectives with precision through program management. We coordinate and oversee integrated activities to ensure success in meeting your organization's specific goals.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>Consulting</h3>
+                <p>Leverage our expertise to navigate challenges, optimize operations, and create lasting value. Our consulting services are designed to guide your business toward sustainable success.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pmo-depot" class="pmo-depot-feature">
+        <div class="pmo-depot-content">
+            <h2>PMO Depot® Hub</h2>
+            <p class="subtitle">Navigating Excellence, Guiding Success: Your Pathway to Project Excellence</p>
+            <p>PMO Depot® is a hands-on project and program management solution that bridges the gap between strategy and execution. We don't just advise—we embed ourselves into your operations to deliver real outcomes.</p>
+            
+            <div class="pmo-features-grid">
+                <div class="pmo-feature-card">
+                    <h3>PMO Setup</h3>
+                    <p>Comprehensive PMO establishment from concept to implementation with proven methodologies</p>
+                    <a href="https://www.pmodepot.com/our-services/pmo-setup" target="_blank" rel="noopener">Learn More →</a>
+                </div>
+                <div class="pmo-feature-card">
+                    <h3>PMO Training</h3>
+                    <p>Professional development programs for your team using PMBOK, AGILE, PM3, and Waterfall approaches</p>
+                    <a href="https://www.pmodepot.com/our-services/pmo-training" target="_blank" rel="noopener">Learn More →</a>
+                </div>
+                <div class="pmo-feature-card">
+                    <h3>Portfolio Management</h3>
+                    <p>Strategic portfolio oversight to align projects with organizational goals</p>
+                    <a href="https://www.pmodepot.com/our-services/portfolio-management" target="_blank" rel="noopener">Learn More →</a>
+                </div>
+                <div class="pmo-feature-card">
+                    <h3>Project Manager Deployment</h3>
+                    <p>Certified project managers who deliver results through hands-on execution</p>
+                    <a href="https://www.pmodepot.com/our-services/project-manager-deployment" target="_blank" rel="noopener">Learn More →</a>
+                </div>
+                <div class="pmo-feature-card">
+                    <h3>PMO Concept & The 3 T's</h3>
+                    <p>Understanding the foundational concepts of PMO and our unique 3 T's approach: Tools, Techniques, and Templates for success</p>
+                    <a href="https://www.pmodepot.com/what-is-pmo-depot/pmo-concept" target="_blank" rel="noopener">Learn More →</a>
+                </div>
+                <div class="pmo-feature-card">
+                    <h3>Careers at PMO Depot</h3>
+                    <p>Join our team of project management professionals. Explore current opportunities and advance your career with PMO Depot®</p>
+                    <a href="https://www.pmodepot.com/our-services/job-openings" target="_blank" rel="noopener">View Openings →</a>
+                </div>
+            </div>
+            
+            <div class="pmo-cta-buttons">
+                <a href="https://www.pmodepot.com" target="_blank" rel="noopener" class="pmo-btn-primary">Visit PMO Depot® →</a>
+                <a href="https://www.pmodepot.com/what-is-pmo-depot" target="_blank" rel="noopener" class="pmo-btn-secondary">What is PMO Depot? →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="capabilities" class="capabilities">
+        <div class="section-header">
+            <h2>Our Capabilities</h2>
+            <p>Comprehensive expertise across multiple domains</p>
+        </div>
+        <div class="capabilities-container">
+            <div class="capability-category">
+                <h3>1. Information Technology</h3>
+                <div class="capability-items">
+                    <div class="capability-item">Network Infrastructure</div>
+                    <div class="capability-item">Computing Systems</div>
+                    <div class="capability-item">On-site Solutions</div>
+                    <div class="capability-item">Wide-area Systems</div>
+                    <div class="capability-item">System Integration</div>
+                    <div class="capability-item">IT Strategy</div>
+                </div>
+            </div>
+            <div class="capability-category">
+                <h3>2. Telecommunications</h3>
+                <div class="capability-items">
+                    <div class="capability-item">Wireless Communications</div>
+                    <div class="capability-item">Public Safety Radio</div>
+                    <div class="capability-item">Fiber Optic Cabling</div>
+                    <div class="capability-item">Cat Cabling Systems</div>
+                    <div class="capability-item">Communication Infrastructure</div>
+                    <div class="capability-item">Network Design</div>
+                </div>
+            </div>
+            <div class="capability-category">
+                <h3>3. Resource Staffing</h3>
+                <div class="capability-items">
+                    <div class="capability-item">Staff Augmentation</div>
+                    <div class="capability-item">Project Resourcing</div>
+                    <div class="capability-item">Resource Planning</div>
+                    <div class="capability-item">Talent Acquisition</div>
+                    <div class="capability-item">Professional Placement</div>
+                    <div class="capability-item">Contract Staffing</div>
+                </div>
+            </div>
+            <div class="capability-category">
+                <h3>4. Project Management</h3>
+                <div class="capability-items">
+                    <div class="capability-item">PMBOK Methodology</div>
+                    <div class="capability-item">AGILE Framework</div>
+                    <div class="capability-item">PM3 Approach</div>
+                    <div class="capability-item">Waterfall Method</div>
+                    <div class="capability-item">Project Planning</div>
+                    <div class="capability-item">Execution Monitoring</div>
+                </div>
+            </div>
+            <div class="capability-category">
+                <h3>5. Consulting Services</h3>
+                <div class="capability-items">
+                    <div class="capability-item">Strategy Development</div>
+                    <div class="capability-item">Execution Planning</div>
+                    <div class="capability-item">Operations Optimization</div>
+                    <div class="capability-item">Change Management</div>
+                    <div class="capability-item">Business Analysis</div>
+                    <div class="capability-item">Performance Improvement</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Lee-Stanley Corporation</h2>
+                <p>In today's fast-paced and competitive business landscape, organizations strive to enhance service delivery while achieving greater efficiency and effectiveness in their products and services.</p>
+                <p>At Lee-Stanley, we empower businesses to make informed decisions in Information Technology, Communications, Staffing, Project and Program Management, and Consulting.</p>
+                <p>With extensive industry expertise, technical proficiency, and cutting-edge solutions, we deliver tailored support for computing, networking, on-site and wide-area systems, as well as wireless public safety communications.</p>
+            </div>
+            <div class="about-features">
+                <div class="about-feature">
+                    <h4>Industry Expertise</h4>
+                    <p>Decades of experience across multiple sectors</p>
+                </div>
+                <div class="about-feature">
+                    <h4>Technical Proficiency</h4>
+                    <p>Cutting-edge solutions and methodologies</p>
+                </div>
+                <div class="about-feature">
+                    <h4>Tailored Support</h4>
+                    <p>Customized solutions for unique requirements</p>
+                </div>
+                <div class="about-feature">
+                    <h4>Trusted Partnership</h4>
+                    <p>Your partner for innovative resources and results</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Let's discuss how Lee-Stanley can help you achieve your strategic objectives</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn-primary">Get Started</a>
+            <a href="#services" class="btn-secondary">Learn More</a>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="https://i.imgur.com/XwYQZ8p.png" alt="Lee-Stanley Corporation" style="max-width: 120px; margin-bottom: 1rem;">
+                <h3>Lee-Stanley Corporation</h3>
+                <p style="color: rgba(255,255,255,0.8);">Your trusted partner for innovative resources and results in IT, Communications, Project Management, and Consulting.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#pmo-depot">PMO Depot®</a></li>
+                    <li><a href="#capabilities">Capabilities</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#services">Information Technology</a></li>
+                    <li><a href="#services">Telecommunications</a></li>
+                    <li><a href="#services">Talent Staffing</a></li>
+                    <li><a href="#services">Project Management</a></li>
+                    <li><a href="#services">Program Management</a></li>
+                    <li><a href="#services">Consulting</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>PMO Depot®</h3>
+                <ul>
+                    <li><a href="https://www.pmodepot.com" target="_blank" rel="noopener">PMO Depot Home</a></li>
+                    <li><a href="https://www.pmodepot.com/what-is-pmo-depot" target="_blank" rel="noopener">What is PMO Depot</a></li>
+                    <li><a href="https://www.pmodepot.com/our-services/pmo-setup" target="_blank" rel="noopener">PMO Setup</a></li>
+                    <li><a href="https://www.pmodepot.com/our-services/pmo-training" target="_blank" rel="noopener">PMO Training</a></li>
+                    <li><a href="https://www.pmodepot.com/our-services/portfolio-management" target="_blank" rel="noopener">Portfolio Management</a></li>
+                    <li><a href="https://www.pmodepot.com/our-services/project-manager-deployment" target="_blank" rel="noopener">Project Manager Deployment</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact-info">
+                <h3>Contact Information</h3>
+                <p><strong>Address:</strong><br>800 Buchanan St, NE<br>Washington, DC 20017</p>
+                <p><strong>Email:</strong><br>info@lee-stanley.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Lee-Stanley Corporation. All rights reserved. | PMO Depot® is a registered trademark.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .capability-category, .about-feature').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
