@@ -1,943 +1,454 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lee-Stanley Corporation | Your Solutions Partner</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #1e40af;
-            --primary-dark: #1e3a8a;
-            --accent: #3b82f6;
-            --secondary: #10b981;
-            --dark: #1f2937;
-            --light: #f9fafb;
-            --gray: #6b7280;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .logo-img {
-            height: 50px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: var(--primary);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .cta-button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
-        }
-
-        .hero {
-            margin-top: 80px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: fadeInUp 0.8s ease 0.2s backwards;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 0.8s ease 0.4s backwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .services {
-            padding: 5rem 2rem;
-            background: var(--light);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            border-top: 4px solid var(--primary);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .service-card p {
-            color: var(--gray);
-            line-height: 1.8;
-        }
-
-        .pmo-depot-feature {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 5rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pmo-depot-feature::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-
-        .pmo-depot-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pmo-depot-feature h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .pmo-depot-feature .subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-
-        .pmo-depot-feature > .pmo-depot-content > p {
-            font-size: 1.1rem;
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            opacity: 0.95;
-        }
-
-        .pmo-features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .pmo-feature-card {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            transition: transform 0.3s;
-            text-align: left;
-        }
-
-        .pmo-feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.2);
-        }
-
-        .pmo-feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .pmo-feature-card p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .pmo-feature-card a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 0.5rem;
-        }
-
-        .pmo-feature-card a:hover {
-            text-decoration: underline;
-        }
-
-        .pmo-cta-buttons {
-            margin-top: 3rem;
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .pmo-btn-primary {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: white;
-            color: #10b981;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-
-        .pmo-btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
-        }
-
-        .pmo-btn-secondary {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-
-        .pmo-btn-secondary:hover {
-            background: white;
-            color: #10b981;
-        }
-
-        .capabilities {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .capabilities-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .capability-category {
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: var(--light);
-            border-radius: 15px;
-            border-left: 5px solid var(--primary);
-        }
-
-        .capability-category h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .capability-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .capability-item {
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: all 0.3s;
-        }
-
-        .capability-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .about {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
-        }
-
-        .about-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .about-feature {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        .about-feature h4 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-section {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: var(--primary);
-        }
-
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: var(--accent);
-        }
-
-        .contact-info p {
-            margin-bottom: 0.8rem;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.6);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .tagline {
-                font-size: 1.2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .pmo-features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lee-Stanley Corporation helps organizations modernize operations through AI enabled solutions, automation, enterprise technology leadership, PMO services, staffing, and consulting." />
+  <title>Lee-Stanley Corporation | AI, Enterprise Technology, PMO, and Transformation</title>
+  <style>
+    :root {
+      --navy: #0f2f55;
+      --blue: #1e5aa8;
+      --sky: #54a3ff;
+      --gold: #c7952b;
+      --ink: #172033;
+      --muted: #5d6b82;
+      --line: #d9e2ef;
+      --soft: #f4f8fc;
+      --white: #ffffff;
+      --shadow: 0 16px 40px rgba(15, 47, 85, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+
+    .topbar {
+      background: var(--navy);
+      color: rgba(255,255,255,.9);
+      font-size: .9rem;
+      padding: .45rem 0;
+    }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .topbar a { color: #fff; text-decoration: none; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .9rem 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      text-decoration: none;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: .01em;
+    }
+    .brand img { height: 52px; width: auto; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: .94rem;
+      padding: .4rem .15rem;
+      border-bottom: 2px solid transparent;
+    }
+    nav a:hover { color: var(--blue); border-bottom-color: var(--gold); }
+    .nav-cta {
+      background: var(--blue);
+      color: #fff !important;
+      padding: .65rem 1rem;
+      border-radius: 999px;
+      border-bottom: none !important;
+      box-shadow: 0 8px 18px rgba(30,90,168,.25);
+    }
+    .nav-cta:hover { background: var(--navy); transform: translateY(-1px); }
+
+    .hero {
+      background:
+        radial-gradient(circle at top left, rgba(84,163,255,.24), transparent 34%),
+        linear-gradient(135deg, #f7fbff 0%, #ffffff 52%, #eef5ff 100%);
+      padding: 5.25rem 0 4.25rem;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .eyebrow {
+      color: var(--blue);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .82rem;
+      margin-bottom: .75rem;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 1.02;
+      color: var(--navy);
+      margin-bottom: 1.1rem;
+      letter-spacing: -.04em;
+    }
+    .hero p { font-size: 1.18rem; color: var(--muted); max-width: 760px; margin-bottom: 1.5rem; }
+    .buttons { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.4rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .86rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: all .22s ease;
+    }
+    .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 12px 28px rgba(30,90,168,.25); }
+    .btn-primary:hover { background: var(--navy); transform: translateY(-3px); }
+    .btn-secondary { border: 1px solid var(--line); background: #fff; color: var(--navy); }
+    .btn-secondary:hover { border-color: var(--blue); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .hero-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+      animation: rise .7s ease both;
+    }
+    .hero-card h3 { color: var(--navy); font-size: 1.25rem; margin-bottom: .75rem; }
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; margin-top: 1rem; }
+    .metric { background: var(--soft); border-radius: 18px; padding: 1rem; border: 1px solid var(--line); }
+    .metric strong { display: block; color: var(--blue); font-size: 1.65rem; line-height: 1; }
+    .metric span { color: var(--muted); font-size: .9rem; }
+
+    section { padding: 4.6rem 0; }
+    .section-head { max-width: 820px; margin-bottom: 2rem; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--navy); line-height: 1.1; margin-bottom: .75rem; }
+    .section-head p { color: var(--muted); font-size: 1.06rem; }
+    .soft { background: var(--soft); }
+    .grid { display: grid; gap: 1.1rem; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.35rem;
+      box-shadow: 0 8px 24px rgba(15,47,85,.06);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(199,149,43,.45); }
+    .card h3 { color: var(--navy); font-size: 1.2rem; margin-bottom: .5rem; }
+    .card p { color: var(--muted); }
+    .tagline { color: var(--gold); font-weight: 800; margin-bottom: .35rem; }
+    .pill-list { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .9rem; }
+    .pill { background: #eef5ff; color: var(--navy); border: 1px solid var(--line); padding: .42rem .7rem; border-radius: 999px; font-size: .9rem; font-weight: 700; }
+
+    .capability-block {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1.25rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .capability-block:last-child { border-bottom: 0; }
+    .capability-block h3 { color: var(--navy); }
+    .capability-block ul { columns: 2; padding-left: 1.1rem; color: var(--muted); }
+    .capability-block li { break-inside: avoid; margin-bottom: .35rem; }
+
+    .project-table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
+    .project-table th, .project-table td { text-align: left; padding: .85rem .95rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .project-table th { background: var(--navy); color: #fff; font-size: .92rem; }
+    .project-table tr:hover td { background: #f8fbff; }
+
+    .feature-band {
+      background: linear-gradient(135deg, var(--navy), #163f70);
+      color: #fff;
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+    .feature-band h2, .feature-band h3 { color: #fff; }
+    .feature-band p { color: rgba(255,255,255,.82); }
+    .feature-band .card { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); box-shadow: none; }
+    .feature-band .card p { color: rgba(255,255,255,.82); }
+    .feature-band a { color: #fff; font-weight: 800; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; align-items: start; }
+    .contact-box { background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 1.5rem; box-shadow: var(--shadow); }
+
+    footer { background: #0b2340; color: rgba(255,255,255,.82); padding: 2.6rem 0 1.5rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 1.4rem; }
+    footer h4 { color: #fff; margin-bottom: .7rem; }
+    footer a { color: rgba(255,255,255,.82); text-decoration: none; display: block; margin-bottom: .45rem; }
+    footer a:hover { color: #fff; }
+    .copyright { border-top: 1px solid rgba(255,255,255,.16); margin-top: 1.5rem; padding-top: 1rem; font-size: .9rem; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: all .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .hero-grid, .grid-3, .grid-2, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+      .capability-block { grid-template-columns: 1fr; }
+      .capability-block ul { columns: 1; }
+      nav ul { gap: .65rem; }
+      .brand span { display: none; }
+    }
+    @media print {
+      header, .topbar, .buttons, footer { display: none; }
+      section, .hero { padding: 1rem 0; }
+      .card, .hero-card, .project-table { box-shadow: none; }
+    }
+  </style>
 </head>
 <body>
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">
-                <img src="images/lee-stanley-logo.png" alt="Lee-Stanley Corporation Logo" class="logo-img">
-                <span>LEE-STANLEY</span>
-            </a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#pmo-depot">PMO Depot®</a></li>
-                <li><a href="#capabilities">Capabilities</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact" class="cta-button">Contact Us</a></li>
-            </ul>
-        </div>
-    </nav>
+  <div class="topbar">
+    <div class="wrap">
+      <span>Lee-Stanley Corporation | Enterprise Technology, AI, PMO, Staffing, and Consulting</span>
+      <a href="mailto:info@lee-stanley.com">info@lee-stanley.com</a>
+    </div>
+  </div>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <img src="images/lee-stanley-logo.png" alt="Lee-Stanley Corporation" style="max-width: 200px; margin: 0 auto 2rem; display: block;">
-            <h1>Lee-Stanley Corporation</h1>
-            <p class="tagline">Empowering Innovation, Connecting Solutions</p>
-            <p>Your trusted partner for innovative resources and results in Information Technology, Communications, Project Management (feat. PMO Depot®), Staffing, and Strategic Consulting.</p>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Lee-Stanley Corporation home">
+        <img src="images/lee-stanley-logo.png" alt="Lee-Stanley Corporation logo" />
+        <span>Lee-Stanley Corporation</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#capabilities">Capabilities</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#pmo-depot">PMO Depot®</a></li>
+          <li><a href="#pcminst">PCMInst</a></li>
+          <li><a class="nav-cta" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">AI enabled enterprise transformation</div>
+          <h1>Enterprise Technology. AI. Execution.</h1>
+          <p>Lee-Stanley Corporation helps organizations modernize operations through AI enabled solutions, workflow automation, enterprise technology leadership, PMO services, staffing, and strategic consulting.</p>
+          <p>We combine more than twenty years of enterprise program leadership across healthcare, government, utilities, infrastructure, cybersecurity exposed environments, and modern AI assisted application development.</p>
+          <div class="buttons">
+            <a class="btn btn-primary" href="#contact">Schedule a Consultation</a>
+            <a class="btn btn-secondary" href="#solutions">Explore Solutions</a>
+          </div>
         </div>
+        <aside class="hero-card">
+          <h3>Built for the market now</h3>
+          <p>Organizations need leaders and partners who can connect strategy, technology, automation, AI, and measurable delivery outcomes.</p>
+          <div class="metric-grid">
+            <div class="metric"><strong>20+</strong><span>Years enterprise experience</span></div>
+            <div class="metric"><strong>6</strong><span>Core service lanes</span></div>
+            <div class="metric"><strong>AI</strong><span>Application development</span></div>
+            <div class="metric"><strong>PMO</strong><span>Leadership and execution</span></div>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <section id="services" class="services">
-        <div class="section-header">
-            <h2>Our Services</h2>
-            <p>Comprehensive solutions tailored to your organizational needs</p>
+    <section id="solutions">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow">Solutions</div>
+          <h2>Practical solutions that improve operations and delivery.</h2>
+          <p>We focus on outcomes clients can understand: faster workflows, better reporting, stronger governance, smarter technology decisions, and reduced manual work.</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">💻</div>
-                <h3>Information Technology</h3>
-                <p>Revolutionize your business operations with advanced information systems. Our management information solutions are designed to enhance productivity, improve efficiency, and drive profitability for your business.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📡</div>
-                <h3>Telecommunications</h3>
-                <p>Seamlessly connect with the world through cutting-edge telecommunications systems. We deliver solutions that integrate communication technologies across government, business, education, and home.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">👥</div>
-                <h3>Talent Staffing Solutions</h3>
-                <p>Finding the perfect talent doesn't have to be time-consuming or costly. Our tailored staffing solutions provide qualified professionals for temporary or permanent positions, saving you valuable resources.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h3>Project Management</h3>
-                <p>Featuring PMO Depot®, efficiently plan, execute, and monitor projects with our expert project management services. From achieving your goals to solving complex problems, we help implement effective changes and deliver results.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎯</div>
-                <h3>Program Management</h3>
-                <p>Achieve strategic objectives with precision through program management. We coordinate and oversee integrated activities to ensure success in meeting your organization's specific goals.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💡</div>
-                <h3>Consulting</h3>
-                <p>Leverage our expertise to navigate challenges, optimize operations, and create lasting value. Our consulting services are designed to guide your business toward sustainable success.</p>
-            </div>
+        <div class="grid grid-3">
+          <article class="card reveal"><div class="tagline">AI Strategy</div><h3>AI Readiness Assessments</h3><p>Identify practical AI opportunities, automation candidates, risks, governance needs, and a realistic adoption roadmap.</p></article>
+          <article class="card reveal"><div class="tagline">Automation</div><h3>Workflow Modernization</h3><p>Replace spreadsheets, email routing, manual approvals, and document handoffs with intelligent workflows.</p></article>
+          <article class="card reveal"><div class="tagline">Execution</div><h3>Enterprise Program Delivery</h3><p>Lead complex technology initiatives from planning through implementation with executive level oversight.</p></article>
+          <article class="card reveal"><div class="tagline">Applications</div><h3>AI Assisted App Development</h3><p>Rapidly design and build business applications, intake portals, dashboards, and AI enabled internal tools.</p></article>
+          <article class="card reveal"><div class="tagline">Leadership</div><h3>Fractional Technology Leadership</h3><p>Provide senior technology, PMO, and transformation leadership without the cost of a full time executive.</p></article>
+          <article class="card reveal"><div class="tagline">Governance</div><h3>Cybersecurity and Risk Support</h3><p>Support security minded delivery, vendor governance, access controls, policy alignment, and risk tracking.</p></article>
         </div>
+      </div>
     </section>
 
-    <section id="pmo-depot" class="pmo-depot-feature">
-        <div class="pmo-depot-content">
-            <h2>PMO Depot® Hub</h2>
-            <p class="subtitle">Navigating Excellence, Guiding Success: Your Pathway to Project Excellence</p>
-            <p>PMO Depot® is a hands-on project and program management solution that bridges the gap between strategy and execution. We don't just advise—we embed ourselves into your operations to deliver real outcomes.</p>
-            
-            <div class="pmo-features-grid">
-                <div class="pmo-feature-card">
-                    <h3>PMO Setup</h3>
-                    <p>Comprehensive PMO establishment from concept to implementation with proven methodologies</p>
-                    <a href="https://www.pmodepot.com/our-services/pmo-setup" target="_blank" rel="noopener">Learn More →</a>
-                </div>
-                <div class="pmo-feature-card">
-                    <h3>PMO Training</h3>
-                    <p>Professional development programs for your team using PMBOK, AGILE, PM3, and Waterfall approaches</p>
-                    <a href="https://www.pmodepot.com/our-services/pmo-training" target="_blank" rel="noopener">Learn More →</a>
-                </div>
-                <div class="pmo-feature-card">
-                    <h3>Portfolio Management</h3>
-                    <p>Strategic portfolio oversight to align projects with organizational goals</p>
-                    <a href="https://www.pmodepot.com/our-services/portfolio-management" target="_blank" rel="noopener">Learn More →</a>
-                </div>
-                <div class="pmo-feature-card">
-                    <h3>Project Manager Deployment</h3>
-                    <p>Certified project managers who deliver results through hands-on execution</p>
-                    <a href="https://www.pmodepot.com/our-services/project-manager-deployment" target="_blank" rel="noopener">Learn More →</a>
-                </div>
-                <div class="pmo-feature-card">
-                    <h3>PMO Concept & The 3 T's</h3>
-                    <p>Understanding the foundational concepts of PMO and our unique 3 T's approach: Tools, Techniques, and Templates for success</p>
-                    <a href="https://www.pmodepot.com/what-is-pmo-depot/pmo-concept" target="_blank" rel="noopener">Learn More →</a>
-                </div>
-                <div class="pmo-feature-card">
-                    <h3>Careers at PMO Depot®</h3>
-                    <p>Join our team of project management professionals. Explore current opportunities and advance your career with PMO Depot®</p>
-                    <a href="https://www.pmodepot.com/our-services/job-openings" target="_blank" rel="noopener">View Openings →</a>
-                </div>
-            </div>
-            
-            <div class="pmo-cta-buttons">
-                <a href="https://www.pmodepot.com" target="_blank" rel="noopener" class="pmo-btn-primary">Visit PMO Depot® →</a>
-                <a href="https://www.pmodepot.com/what-is-pmo-depot" target="_blank" rel="noopener" class="pmo-btn-secondary">What is PMO Depot®? →</a>
-            </div>
+    <section id="industries" class="soft">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow">Industries</div>
+          <h2>Experience across complex operating environments.</h2>
+          <p>Lee-Stanley brings practical experience from regulated, mission critical, and public service environments where execution, security, governance, and stakeholder alignment matter.</p>
         </div>
+        <div class="grid grid-3">
+          <article class="card reveal"><h3>Healthcare</h3><p>Technology programs, clinical workflow support, document processing, care coordination, patient engagement, and healthcare operations modernization.</p></article>
+          <article class="card reveal"><h3>Government</h3><p>State and federal modernization, forms automation, program delivery, procurement support, document management, and workflow improvement.</p></article>
+          <article class="card reveal"><h3>Utilities</h3><p>Infrastructure, GIS, mobile field service management, SCADA communications support, asset management, and operational technology programs.</p></article>
+          <article class="card reveal"><h3>Commercial Enterprise</h3><p>Digital transformation, technology roadmaps, business process automation, vendor coordination, and executive reporting.</p></article>
+          <article class="card reveal"><h3>Cybersecurity Exposed Environments</h3><p>Security aware delivery in environments requiring privacy, access governance, risk tracking, and operational control.</p></article>
+          <article class="card reveal"><h3>Startups and Small Business</h3><p>Affordable AI enabled applications, internal portals, customer intake systems, document workflows, and automation builds.</p></article>
+        </div>
+      </div>
     </section>
 
-    <section id="capabilities" class="capabilities">
-        <div class="section-header">
-            <h2>Our Capabilities</h2>
-            <p>Comprehensive expertise across multiple domains</p>
+    <section id="products">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow">Products and innovation</div>
+          <h2>From consulting to technology enabled solutions.</h2>
+          <p>Lee-Stanley is expanding from advisory and delivery services into AI enabled products, prototypes, and repeatable solutions.</p>
         </div>
-        <div class="capabilities-container">
-            <div class="capability-category">
-                <h3>1. Information Technology</h3>
-                <div class="capability-items">
-                    <div class="capability-item">Network Infrastructure</div>
-                    <div class="capability-item">Computing Systems</div>
-                    <div class="capability-item">On-site Solutions</div>
-                    <div class="capability-item">Wide-area Systems</div>
-                    <div class="capability-item">System Integration</div>
-                    <div class="capability-item">IT Strategy</div>
-                </div>
-            </div>
-            <div class="capability-category">
-                <h3>2. Telecommunications</h3>
-                <div class="capability-items">
-                    <div class="capability-item">Wireless Communications</div>
-                    <div class="capability-item">Public Safety Radio</div>
-                    <div class="capability-item">Fiber Optic Cabling</div>
-                    <div class="capability-item">Cat Cabling Systems</div>
-                    <div class="capability-item">Communication Infrastructure</div>
-                    <div class="capability-item">Network Design</div>
-                </div>
-            </div>
-            <div class="capability-category">
-                <h3>3. Resource Staffing</h3>
-                <div class="capability-items">
-                    <div class="capability-item">Staff Augmentation</div>
-                    <div class="capability-item">Project Resourcing</div>
-                    <div class="capability-item">Resource Planning</div>
-                    <div class="capability-item">Talent Acquisition</div>
-                    <div class="capability-item">Professional Placement</div>
-                    <div class="capability-item">Contract Staffing</div>
-                </div>
-            </div>
-            <div class="capability-category">
-                <h3>4. Project Management</h3>
-                <div class="capability-items">
-                    <div class="capability-item">PMO Depot®</div>
-                    <div class="capability-item">PMBOK Methodology</div>
-                    <div class="capability-item">AGILE Framework</div>
-                    <div class="capability-item">PM3 Approach</div>
-                    <div class="capability-item">Waterfall Method</div>
-                    <div class="capability-item">Project Planning</div>
-                    <div class="capability-item">Execution Monitoring</div>
-                </div>
-            </div>
-            <div class="capability-category">
-                <h3>5. Consulting Services</h3>
-                <div class="capability-items">
-                    <div class="capability-item">Strategy Development</div>
-                    <div class="capability-item">Execution Planning</div>
-                    <div class="capability-item">Operations Optimization</div>
-                    <div class="capability-item">Change Management</div>
-                    <div class="capability-item">Business Analysis</div>
-                    <div class="capability-item">Performance Improvement</div>
-                </div>
-            </div>
+        <div class="grid grid-3">
+          <article class="card reveal"><h3>Anamnesis</h3><p>AI enabled personal and family health management concept focused on document ingestion, structured health records, reminders, and emergency summary support.</p></article>
+          <article class="card reveal"><h3>TaxPilot2</h3><p>AI assisted tax preparation concept focused on document ingestion, guided filing workflows, form generation, compliance controls, and improved user experience.</p></article>
+          <article class="card reveal"><h3>AI Innovation Lab</h3><p>Rapid prototyping for AI agents, knowledge bases, internal tools, document processing, executive dashboards, and business automation workflows.</p></article>
         </div>
+      </div>
     </section>
 
-    <section id="about" class="about">
-        <div class="about-content">
-            <div class="about-text">
-                <h2>About Lee-Stanley Corporation</h2>
-                <p>In today's fast-paced and competitive business landscape, organizations strive to enhance service delivery while achieving greater efficiency and effectiveness in their products and services.</p>
-                <p>At Lee-Stanley, we empower businesses to make informed decisions in Information Technology, Communications, Staffing, Project and Program Management, and Consulting.</p>
-                <p>With extensive industry expertise, technical proficiency, and cutting-edge solutions, we deliver tailored support for computing, networking, on-site and wide-area systems, as well as wireless public safety communications.</p>
-            </div>
-            <div class="about-features">
-                <div class="about-feature">
-                    <h4>Industry Expertise</h4>
-                    <p>Decades of experience across multiple sectors</p>
-                </div>
-                <div class="about-feature">
-                    <h4>Technical Proficiency</h4>
-                    <p>Cutting-edge solutions and methodologies</p>
-                </div>
-                <div class="about-feature">
-                    <h4>Tailored Support</h4>
-                    <p>Customized solutions for unique requirements</p>
-                </div>
-                <div class="about-feature">
-                    <h4>Trusted Partnership</h4>
-                    <p>Your partner for innovative resources and results</p>
-                </div>
-            </div>
+    <section id="capabilities" class="soft">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow">Capabilities</div>
+          <h2>Expanded capabilities for the next generation of work.</h2>
+          <p>Our capabilities combine traditional enterprise technology delivery with AI, automation, PMO leadership, and business transformation.</p>
         </div>
+        <div class="card reveal">
+          <div class="capability-block"><h3>Enterprise Technology</h3><ul><li>Cloud Strategy</li><li>Infrastructure Modernization</li><li>Systems Integration</li><li>Enterprise Architecture</li><li>Data Management</li><li>Network Design</li><li>IT Operations</li><li>Business Intelligence</li></ul></div>
+          <div class="capability-block"><h3>Artificial Intelligence</h3><ul><li>AI Readiness Assessments</li><li>AI Strategy</li><li>AI Application Development</li><li>AI Document Processing</li><li>AI Knowledge Bases</li><li>AI Agents</li><li>Prompt Engineering</li><li>AI Governance</li></ul></div>
+          <div class="capability-block"><h3>Digital Transformation</h3><ul><li>Business Process Analysis</li><li>Process Automation</li><li>Operational Improvement</li><li>Application Rationalization</li><li>Workflow Redesign</li><li>Technology Modernization</li></ul></div>
+          <div class="capability-block"><h3>Program and Project Leadership</h3><ul><li>Enterprise PMO</li><li>Portfolio Management</li><li>PMBOK</li><li>Agile and SAFe</li><li>Waterfall Delivery</li><li>Hybrid Delivery</li><li>Risk Management</li><li>Executive Reporting</li></ul></div>
+          <div class="capability-block"><h3>Telecommunications</h3><ul><li>Wired Communications</li><li>Wireless Communications</li><li>Fiber and Cat Cabling</li><li>VOIP Deployment</li><li>PBX Administration</li><li>SCADA Communications</li><li>Transport Engineering</li></ul></div>
+          <div class="capability-block"><h3>Staffing and Consulting</h3><ul><li>Resource Management</li><li>Staff Augmentation</li><li>Project Resource Planning</li><li>RFP Support</li><li>Strategy</li><li>Execution</li><li>Vendor Coordination</li></ul></div>
+        </div>
+      </div>
     </section>
 
-    <section class="cta-section">
-        <h2>Ready to Transform Your Business?</h2>
-        <p>Let's discuss how Lee-Stanley can help you achieve your strategic objectives</p>
-        <div class="cta-buttons">
-            <a href="#contact" class="btn-primary">Get Started</a>
-            <a href="#services" class="btn-secondary">Learn More</a>
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow">Project experience</div>
+          <h2>Representative project listing.</h2>
+          <p>Selected experience includes technology modernization, application development, infrastructure, telecommunications, automation, project leadership, and staffing support across a span beginning in 2007.</p>
         </div>
+        <div class="reveal" style="overflow-x:auto;">
+          <table class="project-table">
+            <thead><tr><th>Years</th><th>Representative Organization</th><th>Project Area</th><th>Focus</th></tr></thead>
+            <tbody>
+              <tr><td>2007 to 2009</td><td>DC Water</td><td>IT Modernization and System Design</td><td>Infrastructure, GIS, field service, system upgrades, and operational technology delivery.</td></tr>
+              <tr><td>2010 to 2012</td><td>DC Water</td><td>Mobile Field Service and Business Process Management</td><td>Mobile field computing, workflow improvement, asset management, and business process modernization.</td></tr>
+              <tr><td>2013</td><td>HUD OCIO</td><td>Federal Modernization</td><td>Enterprise architecture, CMMI aligned delivery, modernization planning, and project management.</td></tr>
+              <tr><td>2013 to 2019</td><td>State of Maryland</td><td>Enterprise IT Leadership</td><td>PMO, service desk, infrastructure, security systems, telecom, analytics, DevOps modernization, and statewide technology operations.</td></tr>
+              <tr><td>2019 to 2024</td><td>MedStar Health and NTT DATA</td><td>Healthcare Technology Programs</td><td>Healthcare IT modernization, endpoint management, site builds, security and access initiatives, and enterprise implementation support.</td></tr>
+              <tr><td>2024</td><td>Highmark Health</td><td>Enterprise Program Delivery</td><td>Technology program leadership, vendor coordination, resource planning, reporting, and risk management.</td></tr>
+              <tr><td>2025</td><td>Veterans Affairs Project Support</td><td>Prototype and API Delivery</td><td>Human centered analysis, AzureML serverless Spark exposure, API prototype support, milestones, risks, and delivery tracking.</td></tr>
+              <tr><td>2007 to Present</td><td>Lee-Stanley Corporation</td><td>Consulting, Staffing, PMO, and AI Solutions</td><td>Program management, RFP support, automation, AI assisted application development, fractional technology leadership, and delivery support.</td></tr>
+              <tr><td>2007 to Present</td><td>Clients including Qinetiq, Department of Justice, DC Water, and regional partners</td><td>Talent Staffing Solutions</td><td>Resource management, staffing coordination, project resourcing, and delivery support.</td></tr>
+              <tr><td>2007 to Present</td><td>Telecommunications and Infrastructure Engagements</td><td>Telecommunications Projects</td><td>POS installation, below ground communications, Baltimore City Schools cabling project management, ADSL, Direct TV installation management, new home cabling, T1, Frame Relay, ATM, SCADA communications, Alcatel VOIP, Siemens PBX, RBOC liaison, and WITS DAR.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
 
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-section">
-                <img src="images/lee-stanley-logo.png" alt="Lee-Stanley Corporation" style="max-width: 120px; margin-bottom: 1rem;">
-                <h3>Lee-Stanley Corporation</h3>
-                <p style="color: rgba(255,255,255,0.8);">Your trusted partner for innovative resources and results in IT, Communications, Project Management, and Consulting.</p>
-            </div>
-
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#pmo-depot">PMO Depot®</a></li>
-                    <li><a href="#capabilities">Capabilities</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Services</h3>
-                <ul>
-                    <li><a href="#services">Information Technology</a></li>
-                    <li><a href="#services">Telecommunications</a></li>
-                    <li><a href="#services">Talent Staffing</a></li>
-                    <li><a href="#services">Project Management</a></li>
-                    <li><a href="#services">Program Management</a></li>
-                    <li><a href="#services">Consulting</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>PMO Depot®</h3>
-                <ul>
-                    <li><a href="https://www.pmodepot.com" target="_blank" rel="noopener">PMO Depot® Home</a></li>
-                    <li><a href="https://www.pmodepot.com/#what-is" target="_blank" rel="noopener">What is PMO Depot®</a></li>
-                    <li><a href="https://www.pmodepot.com/#pmo-setup" target="_blank" rel="noopener">PMO Setup</a></li>
-                    <li><a href="https://www.pmodepot.com/#pmo-training" target="_blank" rel="noopener">PMO Training</a></li>
-                    <li><a href="https://www.pmodepot.com/#portfolio-mgmt" target="_blank" rel="noopener">Portfolio Management</a></li>
-                    <li><a href="https://www.pmodepot.com/#pm-deployment" target="_blank" rel="noopener">Project Manager Deployment</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section contact-info">
-                <h3>Contact Information</h3>
-                <p><strong>Address:</strong><br>800 Buchanan St, NE<br>Washington, DC 20017</p>
-                <p><strong>Email:</strong><br>info@lee-stanley.com</p>
-            </div>
+    <section id="pmo-depot" class="soft">
+      <div class="wrap feature-band reveal">
+        <div class="section-head" style="margin-bottom:1.2rem;">
+          <div class="eyebrow" style="color:#ffd37a;">PMO Depot®</div>
+          <h2>Project management that bridges strategy and execution.</h2>
+          <p>PMO Depot® supports organizations with PMO setup, project manager deployment, portfolio management, training, methods, tools, techniques, and templates.</p>
         </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2026 Lee-Stanley Corporation. All rights reserved. | PMO Depot® is a registered trademark. | <a href="privacy-policy.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Privacy Policy</a></p>
+        <div class="grid grid-3">
+          <article class="card"><h3>PMO Setup</h3><p>Establish governance, roles, processes, reporting, templates, and delivery discipline.</p><p><a href=”https://www.pmodepot.com/#pmo-setup” target="_blank" rel="noopener">Learn more</a></p></article>
+          <article class="card"><h3>Portfolio Management</h3><p>Improve visibility, prioritization, resource planning, executive reporting, and delivery oversight.</p><p><a href=”https://www.pmodepot.com/#portfolio-mgmt” target="_blank" rel="noopener">Learn more</a></p></article>
+          <article class="card"><h3>Project Manager Deployment</h3><p>Deploy experienced delivery leadership for complex initiatives, recovery efforts, and high visibility work.</p><p><a href=”https://www.pmodepot.com/#pm-deployment” target="_blank" rel="noopener">Learn more</a></p></article>
         </div>
-    </footer>
+        <div class="buttons"><a class="btn btn-primary" href="https://www.pmodepot.com" target="_blank" rel="noopener">Visit PMO Depot®</a><a class="btn btn-secondary" href="https://www.pmodepot.com/what-is-pmo-depot" target="_blank" rel="noopener">What is PMO Depot®?</a></div>
+      </div>
+    </section>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
+    <section id="pcminst">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow">PCMInst</div>
+          <h2>Professional capability maturity and instruction reference.</h2>
+          <p>Lee-Stanley continues to reference PCMInst as part of its broader professional ecosystem for capability maturity, instruction, project leadership, and training oriented services.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card reveal"><h3>Training and Instruction</h3><p>Support for structured project, technology, process, and delivery learning paths.</p></article>
+          <article class="card reveal"><h3>Capability Maturity</h3><p>Assessment minded thinking for improving processes, governance, execution, and organizational performance.</p></article>
+          <article class="card reveal"><h3>Professional Development</h3><p>Practical guidance for teams, leaders, project managers, and technology professionals.</p></article>
+        </div>
+      </div>
+    </section>
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    document.getElementById('navLinks').classList.remove('active');
-                }
-            });
-        });
+    <section id="contact" class="soft">
+      <div class="wrap contact-grid">
+        <div class="section-head reveal">
+          <div class="eyebrow">Contact</div>
+          <h2>Let's discuss modernization, AI, automation, staffing, or PMO support.</h2>
+          <p>Contact Lee-Stanley Corporation to explore a project, readiness assessment, fractional leadership engagement, application build, or delivery support need.</p>
+        </div>
+        <div class="contact-box reveal">
+          <h3>Lee-Stanley Corporation</h3>
+          <p>800 Buchanan St, NE<br />Washington, DC 20017</p>
+          <p style="margin-top:1rem;"><strong>Email:</strong> <a href="mailto:info@lee-stanley.com">info@lee-stanley.com</a></p>
+          <div class="pill-list"><span class="pill">AI Strategy</span><span class="pill">PMO</span><span class="pill">Automation</span><span class="pill">Staffing</span><span class="pill">Consulting</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div><h4>Lee-Stanley Corporation</h4><p>Enterprise technology, AI enabled solutions, project leadership, telecommunications, staffing, and consulting.</p></div>
+        <div><h4>Company</h4><a href="#solutions">Solutions</a><a href="#industries">Industries</a><a href="#products">Products</a><a href="#capabilities">Capabilities</a></div>
+        <div><h4>Experience</h4><a href="#projects">Project Listing</a><a href="#pmo-depot">PMO Depot®</a><a href="#pcminst">PCMInst</a><a href="privacy-policy.html">Privacy Policy</a></div>
+        <div><h4>PMO Depot® Links</h4><a href="https://www.pmodepot.com" target="_blank" rel="noopener">PMO Depot® Home</a><a href="https://www.pmodepot.com/our-services/pmo-training" target="_blank" rel="noopener">PMO Training</a><a href="https://www.pmodepot.com/our-services/job-openings" target="_blank" rel="noopener">Careers</a></div>
+      </div>
+      <p class="copyright">&copy; 2026 Lee-Stanley Corporation. All rights reserved. PMO Depot® is a registered trademark. PCMInst referenced as part of the Lee-Stanley professional ecosystem.</p>
+    </div>
+  </footer>
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.service-card, .capability-category, .about-feature').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    revealItems.forEach((item) => observer.observe(item));
+  </script>
 </body>
-
 </html>
-
-
